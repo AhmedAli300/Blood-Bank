@@ -1,0 +1,25 @@
+{
+  "name": "blood-bank-system",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "npm@10.2.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:user:frontend": "npm run dev --workspace=apps/user-frontend",
+    "dev:bank:frontend": "npm run dev --workspace=apps/bank-frontend",
+    "dev:user:backend": "npm run dev --workspace=apps/user-backend",
+    "dev:bank:backend": "npm run dev --workspace=apps/bank-backend",
+
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "format": "npm run format --workspaces"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "prettier": "^3.2.4",
+    "eslint": "^8.56.0"
+  }
+}
