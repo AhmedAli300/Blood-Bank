@@ -1,6 +1,6 @@
 // server.js
 
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '.env' });
 
 const app = require('./app'); // لازم يكون قبل أي استخدام لـ app
 const pool = require('./config/db.config');
