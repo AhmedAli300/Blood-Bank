@@ -1,0 +1,15 @@
+@import "tailwindcss";
+/* لجعل العلم والأيقونات متناسبة مع تصميمك */
+.phone-container .PhoneInputInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding-right: 10px;
+  font-family: inherit;
+}
+
+.phone-container .PhoneInputCountry {
+  margin-right: 10px;
+  border-left: 1px solid #e5e7eb;
+  padding-left: 10px;
+}
