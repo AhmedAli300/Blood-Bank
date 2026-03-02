@@ -23,10 +23,10 @@ export default function BloodBankPage() {
   const bloodTypes = ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-10 font-tajawal text-right" dir="rtl">
+    <div className="min-h-screen  bg-gray-50 p-4 md:p-10 font-tajawal text-right" dir="rtl">
       
       {/* قسم البحث والفلترة */}
-      <section className="xl:max-w-[96%]  mx-auto bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 mb-10">
+      <section className="w-full max-w-[93%]  mx-auto bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 mb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           
           {/* اختيار الفصيلة */}
@@ -99,7 +99,7 @@ export default function BloodBankPage() {
       </section>
 
       {/* قسم النتائج */}
-      <section className="xl:max-w-[96%] mx-auto">
+      <section className="w-full max-w-[93%] mx-auto">
         <div className="flex justify-between items-center mb-8 px-2">
             <div className="text-right">
                 <h2 className="text-2xl font-bold text-gray-800">بنوك الدم المتاحة</h2>
@@ -156,7 +156,7 @@ export default function BloodBankPage() {
 
               {bank.status !== "unavailable" ? (
                 <div className="flex justify-between items-center gap-4">
-                    <Link href={"donate"} className="w-full text-center cursor-pointer bg-green-600 hover:bg-green-700 text-white py-3 rounded-2xl font-bold transition-colors shadow-sm">
+                    <Link href={`/banks/${bank.id}`} className="w-full text-center cursor-pointer bg-green-600 hover:bg-green-700 text-white py-3 rounded-2xl font-bold transition-colors shadow-sm">
                     طلب الآن
                     </Link>
                     <button className="p-3 py-3 cursor-pointer border border-gray-100 rounded-2xl text-gray-500 hover:bg-gray-50 transition-all shadow-sm">

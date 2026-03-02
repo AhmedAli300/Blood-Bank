@@ -32,9 +32,9 @@ export default function Home() {
         ابدأ الآن <FaArrowLeft />
 
       </Link>
-      <button className="text-green-600 border border-green-600 px-5 md:px-8 py-3 rounded-lg font-bold">
+      <Link href={"home"} className="text-green-600 border border-green-600 px-5 md:px-8 py-3 rounded-lg font-bold">
         تعرف على المزيد
-      </button>
+      </Link>
     </div>
     <div className="number flex mt-3  items-center justify-between w-full">
       {footer.map((item , index) => 
