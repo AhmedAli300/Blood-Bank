@@ -9,7 +9,7 @@ export default function UserLayout({
 }) {
   return (
     <section>
-      <Navbar /> {/* الـ Navbar ثابت هنا فقط */}
+      <Navbar /> 
       <main>{children}</main>
     </section>
   );

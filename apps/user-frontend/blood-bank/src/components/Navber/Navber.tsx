@@ -1,22 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation"; // أضفنا usePathname
+import { usePathname } from "next/navigation"; // أضفنا usePathname
 import { MdOutlineBloodtype } from "react-icons/md";
 import Image from "next/image";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { list } from "@/features/navbar/constants";
 
-const list = [
-    {title: "الرئيسية" , path: '/home'},
-    {title: "طلب دم" , path: '/banks'}, // تأكد من إضافة / قبل المسار
-    {title: "الخريطة" , path: '/map'},
-    {title: "طلباتي" , path: '/my-requests'},
-]
+
 
 const Navbar = () => {
-  const router = useRouter();
-  const pathname = usePathname(); // هذا المتغير يحتوي على المسار الحالي المتواجد فيه المستخدم
+  const pathname = usePathname(); 
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
