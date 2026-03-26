@@ -2,11 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
-  MdNotificationsActive, 
-  MdAddBox, 
-  MdInbox, 
-  MdLocalOffer, 
-  MdCampaign 
+  MdNotificationsActive
 } from 'react-icons/md';
 import { notificationOptions } from '../Alert';
 import { Button } from '@/components/ui/button';
