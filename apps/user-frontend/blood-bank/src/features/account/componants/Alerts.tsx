@@ -36,7 +36,7 @@ export default function Alerts() {
         <h1 className="text-xl font-bold text-gray-800 mb-2">
           إعدادات التنبيهات
         </h1>
-        <p className="text-gray-400 text-sm text-center max-w-[250px] mb-5 leading-relaxed">
+        <p className="text-gray-400 text-sm text-center max-w-52.5 mb-5 leading-relaxed">
           تحكم في نوعية الإشعارات التي ترغب في استلامها على هاتفك
         </p>
 
