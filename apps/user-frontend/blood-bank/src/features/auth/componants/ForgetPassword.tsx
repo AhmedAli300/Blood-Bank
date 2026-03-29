@@ -1,12 +1,24 @@
+"use client";
 import Link from 'next/link';
 // استيراد الأيقونات
 import { BiEnvelope } from 'react-icons/bi';
 import LoginGreen from './LoginGreen';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useForgetPassword } from '@/hooks/auth/useForgetPassword';
 
 
 export default function ForgetPassword() {
+
+  const { 
+        register, 
+        handleSubmit, 
+        formState: { errors, isSubmitting }, 
+        onSubmit, 
+      } = useForgetPassword();
+
+
   return (
     <>
          <div className="min-h-screen bg-[#F0F7F3] flex items-center justify-center p-4 font-sans" dir="rtl">
@@ -27,7 +39,9 @@ export default function ForgetPassword() {
             </Link>
           </div>
 
-          <form className="space-y-6">
+          <form
+           onSubmit={handleSubmit(onSubmit)} 
+           className="space-y-6">
             {/* البريد الإلكتروني */}
             <Field className="space-y-1">
               <FieldLabel className="text-xs font-bold text-gray-500 mr-1">أدخل البريد الإلكتروني الخاص بك</FieldLabel>
@@ -36,19 +50,30 @@ export default function ForgetPassword() {
                   type="email" 
                   placeholder="example@mail.com" 
                   className="w-full p-2 py-5 pr-11 mt-1 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                  {...register('email', {required: true})}
                 />
                 <BiEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
               </div>
+              {errors.email && (
+                <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                  * {errors.email.message}
+                </p>
+              )} 
             </Field>
+
+            
 
          
 
           
+<Button disabled={isSubmitting}   variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {isSubmitting ?  "جاري  التأكيد" : "تأكيد" }
 
+                </Button>
             {/* زر تسجيل الدخول */}
-            <Link href={"resetPassword"} className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+            {/* <Link href={"resetPassword"} className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
              تأكيد
-            </Link>
+            </Link> */}
           </form>
         </div>
       </div>

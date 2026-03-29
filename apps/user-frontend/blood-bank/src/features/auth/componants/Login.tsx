@@ -1,3 +1,4 @@
+"use client";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 // استيراد الأيقونات
@@ -6,9 +7,17 @@ import { HiOutlineLogin } from 'react-icons/hi';
 import LoginGreen from './LoginGreen';
 import { Input } from '@/components/ui/input';
 import { Field, FieldLabel } from '@/components/ui/field';
+import { useLogin } from '@/hooks/auth/useLogin';
 
 export default function Login() {
-    return (
+      const { 
+      register, 
+      handleSubmit, 
+      formState: { errors, isSubmitting }, 
+      onSubmit, 
+    } = useLogin();
+      
+   return (
         <>
                 <div className="min-h-screen bg-[#F0F7F3] flex items-center justify-center p-4 font-sans" dir="rtl">
       <div className="bg-white rounded-[2rem] shadow-2xl flex flex-col md:flex-row overflow-hidden max-w-4xl w-full border border-gray-100">
@@ -27,7 +36,7 @@ export default function Login() {
             </Link>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* البريد الإلكتروني */}
             <Field className="space-y-1">
               <FieldLabel className="text-xs font-bold text-gray-500 mr-1">البريد الإلكتروني</FieldLabel>
@@ -35,10 +44,16 @@ export default function Login() {
                 <Input 
                   type="email" 
                   placeholder="example@mail.com" 
-                  className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#2D8A56]/20 focus:border-[#2D8A56] outline-none transition-all" 
+                  className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                  {...register('email', {required: true})}
                 />
                 <BiEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
               </div>
+               {errors.email && (
+                <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                  * {errors.email.message}
+                </p>
+              )} 
             </Field>
 
             {/* كلمة المرور */}
@@ -48,10 +63,16 @@ export default function Login() {
                 <Input 
                   type="password" 
                   placeholder="********" 
-                  className="w-full p-2 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#2D8A56]/20 focus:border-[#2D8A56] outline-none transition-all" 
+                  className="w-full p-2 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                  {...register('password', {required: true})}
                 />
                 <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
               </div>
+               {errors.password && (
+                <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                  * {errors.password.message}
+                </p>
+              )} 
             </Field>
 
             {/* روابط إضافية (تذكرني + نسيت كلمة المرور) */}
@@ -64,12 +85,13 @@ export default function Login() {
             </div>
 
             {/* زر تسجيل الدخول */}
-            <Button asChild  variant="secondary" size="lg" className="w-full  bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+            <Button disabled={isSubmitting}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {isSubmitting ?  "جاري  التسجيل" : " تسجيل الدخول" }
 
-                <Link href={"home"}  className='text-white'>
-                تسجيل الدخول
+                {/* <Link href={"home"}  className='text-white'> */}
+                {/* تسجيل الدخول */}
                 <HiOutlineLogin className="text-xl rotate-180 group-hover:-translate-x-1 transition-transform" />
-                </Link>
+                {/* </Link> */}
             </Button>
           </form>
         </div>
