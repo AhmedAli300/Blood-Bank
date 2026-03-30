@@ -132,12 +132,12 @@ static async forgotPassword(req, res) {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      auth: { user: process.env.EMAIL_USER, pass: process.env.SMTP_PASS },
+      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
       tls: { rejectUnauthorized: false },
     })
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: process.env.SMTP_USER,
       to: email,
       subject: "Password Reset OTP",
       text: `Your password reset code: ${otp}\nValid for 10 minutes`
