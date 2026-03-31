@@ -7,13 +7,13 @@ import { HiOutlineLogin } from 'react-icons/hi';
 import LoginGreen from './LoginGreen';
 import { Input } from '@/components/ui/input';
 import { Field, FieldLabel } from '@/components/ui/field';
-import { useLogin } from '@/hooks/auth/useLogin';
+import { useLogin } from '@/features/auth/hooks/useLogin';
 
 export default function Login() {
       const { 
       register, 
-      handleSubmit, 
-      formState: { errors, isSubmitting }, 
+      loading,
+      formState: { errors }, 
       onSubmit, 
     } = useLogin();
       
@@ -36,7 +36,7 @@ export default function Login() {
             </Link>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={onSubmit} className="space-y-6">
             {/* البريد الإلكتروني */}
             <Field className="space-y-1">
               <FieldLabel className="text-xs font-bold text-gray-500 mr-1">البريد الإلكتروني</FieldLabel>
@@ -85,8 +85,8 @@ export default function Login() {
             </div>
 
             {/* زر تسجيل الدخول */}
-            <Button disabled={isSubmitting}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {isSubmitting ?  "جاري  التسجيل" : " تسجيل الدخول" }
+            <Button disabled={loading}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ?  "جاري  التسجيل" : " تسجيل الدخول" }
 
                 {/* <Link href={"home"}  className='text-white'> */}
                 {/* تسجيل الدخول */}

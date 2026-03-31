@@ -6,15 +6,15 @@ import LoginGreen from './LoginGreen';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useForgetPassword } from '@/hooks/auth/useForgetPassword';
+import { useForgetPassword } from '../hooks/useForgetPassword';
 
 
 export default function ForgetPassword() {
 
   const { 
         register, 
-        handleSubmit, 
-        formState: { errors, isSubmitting }, 
+         loading,
+        formState: { errors }, 
         onSubmit, 
       } = useForgetPassword();
 
@@ -40,7 +40,7 @@ export default function ForgetPassword() {
           </div>
 
           <form
-           onSubmit={handleSubmit(onSubmit)} 
+           onSubmit={onSubmit} 
            className="space-y-6">
             {/* البريد الإلكتروني */}
             <Field className="space-y-1">
@@ -66,8 +66,8 @@ export default function ForgetPassword() {
          
 
           
-<Button disabled={isSubmitting}   variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {isSubmitting ?  "جاري  التأكيد" : "تأكيد" }
+<Button disabled={loading}   variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ?  "جاري  التأكيد" : "تأكيد" }
 
                 </Button>
             {/* زر تسجيل الدخول */}

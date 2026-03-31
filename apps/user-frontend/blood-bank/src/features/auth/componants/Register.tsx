@@ -11,7 +11,8 @@ import { Button } from '@/components/ui/button';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 
-import { useRegister } from '@/hooks/auth/useRegister';
+import { useRegister } from '@/features/auth/hooks/useRegister';
+import { Controller } from 'react-hook-form';
 
 
 export default function Register() {
@@ -19,8 +20,9 @@ export default function Register() {
 
     const { 
     register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting }, 
+    control,
+  loading,
+    formState: { errors }, 
     onSubmit, 
   } = useRegister();
     
@@ -55,7 +57,7 @@ export default function Register() {
             </Link>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)}  className="space-y-3">
+          <form onSubmit={onSubmit}  className="space-y-3">
             {/* الاسم الرباعي */}
             <Field className="space-y-1">
               <FieldLabel className="text-xs font-bold text-gray-500 mr-1">الاسم الرباعي</FieldLabel>
@@ -114,6 +116,7 @@ export default function Register() {
               </div>
             </div> */}
 
+              
             {/* البريد الإلكتروني */}
             <div className="space-y-1">
               <FieldLabel className="text-xs font-bold text-gray-500 mr-1">البريد الإلكتروني</FieldLabel>
@@ -127,13 +130,15 @@ export default function Register() {
                 </p>
               )}  
             </div>
-
-            {/* الباسورد */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-               <div className="space-y-1">
+            <div className="space-y-1">
                 <FieldLabel className="text-xs font-bold text-gray-500 mr-1">رقم الهاتف</FieldLabel>
                 <div className="relative phone-container">
-                  <PhoneInput
+                  <Controller
+                    name='phone'
+                    control={control}  
+                    render={({field}) => ( 
+
+                  <PhoneInput {...field}
                   {...register('phone' , {required: true})} 
                   international
                     placeholder="01x xxxx xxxx"
@@ -143,6 +148,7 @@ export default function Register() {
                     onChange={setValue}
                     className="w-full p-3 py-2 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-[#2D8A56]/20 focus-within:border-[#2D8A56] outline-none transition-all flex dir-ltr"
                   />
+                     )}/>
                 </div>
                 {errors.phone && (
                   <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
@@ -150,6 +156,35 @@ export default function Register() {
                   </p>
                 )}  
               </div>
+
+            {/* الباسورد */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+               {/* <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">رقم الهاتف</FieldLabel>
+                <div className="relative phone-container">
+                  <Controller
+                    name='phone'
+                    control={control}  
+                    render={({field}) => ( 
+
+                  <PhoneInput {...field}
+                  {...register('phone' , {required: true})} 
+                  international
+                    placeholder="01x xxxx xxxx"
+                    defaultCountry="EG" // جعل مصر هي الدولة الافتراضية
+                    value={value}
+                    maxLength={15}
+                    onChange={setValue}
+                    className="w-full p-3 py-2 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-[#2D8A56]/20 focus-within:border-[#2D8A56] outline-none transition-all flex dir-ltr"
+                  />
+                     )}/>
+                </div>
+                {errors.phone && (
+                  <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                    * {errors.phone.message}
+                  </p>
+                )}  
+              </div> */}
               <div className="space-y-1">
                 <FieldLabel className="text-xs font-bold text-gray-500 mr-1">كلمة المرور</FieldLabel>
                 <div className="relative group">
@@ -161,6 +196,25 @@ export default function Register() {
       * {errors.password?.message}
     </p>
   )}  
+              </div>
+
+              {/* حقل تأكيد كلمة المرور */}
+              <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">تأكيد كلمة المرور</FieldLabel>
+                <div className="relative group">
+                  <Input 
+                    {...register('confirm_password')} 
+                    type="password" 
+                    placeholder="********" 
+                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all placeholder:text-gray-300" 
+                  />
+                  <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
+                </div>
+                {errors.confirm_password && (
+                  <p className="text-red-500 text-xs mt-1 mr-1 animate-in fade-in slide-in-from-top-1">
+                    * {errors.confirm_password?.message}
+                  </p>
+                )}
               </div>
               {/* <div className="space-y-1">
                 <FieldLabel className="text-xs font-bold text-gray-500 mr-1">تأكيد كلمة المرور</FieldLabel>
@@ -180,8 +234,8 @@ export default function Register() {
             </div>
 
             {/* زر الإرسال */}
-            <Button disabled={isSubmitting} variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {isSubmitting ?  "جاري  الإنشاء" : "إنشاء الحساب" }
+            <Button type='submit' disabled={loading} variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ?  "جاري  الإنشاء" : "إنشاء الحساب" }
               <HiOutlineArrowNarrowLeft className="text-xl group-hover:-translate-x-1 transition-transform" />
             </Button>
           </form>

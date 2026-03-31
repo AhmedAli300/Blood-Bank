@@ -11,20 +11,19 @@ import { BiLockAlt } from 'react-icons/bi';
 import { Controller } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 
-import { useResetPasword } from '@/hooks/auth/useResetPasword';
+import { useResetPasword } from '@/features/auth/hooks/useResetPasword';
 
 
 export default function ResetPassword() {
 
     const { 
       register, 
-      handleSubmit, 
+      loading, 
       control,
-      formState: { errors, isSubmitting }, 
+      formState: { errors }, 
       onSubmit, 
     } = useResetPasword();
       
- 
 
   return (
     <>
@@ -47,7 +46,7 @@ export default function ResetPassword() {
           </div>
 
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={onSubmit} className="space-y-6">
             {/* OTP*/}
             <Field className="space-y-1">
                 {/* <h4 >رمز التحقيق</h4> */}
@@ -57,7 +56,7 @@ export default function ResetPassword() {
                     control={control}
                     name="otp"
                     render={({ field }) => (
-                      <InputOTP maxLength={6} value={field.value}  onChange={field.onChange}>
+                      <InputOTP maxLength={6}  value={field.value}  onChange={field.onChange}>
                           <InputOTPGroup className="gap-2"> {/* إضافة gap بتخلي فيه مسافات بين المربعات */}
                           <InputOTPSlot index={0} className="rounded-lg border-2 w-10 h-10 text-lg font-bold" />
                           <InputOTPSlot index={1} className="rounded-lg border-2 w-10 h-10 text-lg font-bold" />
@@ -121,8 +120,8 @@ export default function ResetPassword() {
                 </Field>
 
             {/* زر تسجيل الدخول */}
-            <Button disabled={isSubmitting}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] cursor-pointer  font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {isSubmitting ?  "جاري  التغير" : " تأكيد" }
+            <Button disabled={loading}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] cursor-pointer  font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ?  "جاري  التغير" : " تأكيد" }
 
                 
             </Button>
