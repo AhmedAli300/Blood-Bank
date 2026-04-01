@@ -235,7 +235,7 @@ export default function Register() {
             </div>
 
             {/* زر الإرسال */}
-            <Button type='submit' disabled={loading} variant="secondary" size="lg" className="w-full bg-(--primary-color) hover:bg-[#256f45] text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+            <Button type='submit' disabled={loading} variant="secondary" size="lg" className="w-full bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
               {loading ? (<span className="flex items-center gap-2"> <Spinner /> جاري الإنشاء</span>): ("إنشاء الحساب" )}
               <HiOutlineArrowNarrowLeft className="text-xl group-hover:-translate-x-1 transition-transform" />
             </Button>

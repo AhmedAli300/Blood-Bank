@@ -67,7 +67,7 @@ export default function ResetAccountPassword() {
              
 
                 {/* زر تسجيل الدخول */}
-                <Link href={"successCard"} className="w-full bg-(--primary-color) hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+                <Link href={"successCard"} className="w-full bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
                 تحديث كلمة المرور
                 <HiOutlineLogin className="text-xl rotate-180 group-hover:-translate-x-1 transition-transform" />
                 </Link>

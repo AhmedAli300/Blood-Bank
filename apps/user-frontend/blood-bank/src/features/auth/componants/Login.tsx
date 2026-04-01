@@ -87,7 +87,7 @@ export default function Login() {
             </div>
 
             {/* زر تسجيل الدخول */}
-            <Button disabled={loading}   variant="secondary" size="lg" className="w-full !text-white bg-(--primary-color) hover:bg-[#256f45] text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+            <Button disabled={loading}   variant="secondary" size="lg" className="w-full !text-white bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
               {loading ? (<span className="flex items-center gap-2"> <Spinner />جاري  التسجيل</span>) : (" تسجيل الدخول" )}
 
                 {/* <Link href={"home"}  className='text-white'> */}
