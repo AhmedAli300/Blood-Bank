@@ -1,0 +1,252 @@
+"use client";
+import React, { useState } from 'react';
+import PhoneInput, { Value } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import Link from 'next/link';
+// استيراد الأيقونات المطلوبة
+import { BiUser,  BiEnvelope, BiLockAlt } from 'react-icons/bi';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { MdOutlineBloodtype } from 'react-icons/md';
+import { Button } from '@/components/ui/button';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+
+import { useRegister } from '@/features/auth/hooks/useRegister';
+import { Controller } from 'react-hook-form';
+import { Spinner } from '@/components/ui/spinner';
+
+
+export default function Register() {
+    const [value, setValue] = useState<Value | undefined>();
+
+    const { 
+    register, 
+    control,
+  loading,
+    formState: { errors }, 
+    onSubmit, 
+  } = useRegister();
+    
+  return (
+    <>
+         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans" dir="rtl">
+      <div className="bg-white rounded-[2rem] shadow-2xl flex flex-col md:flex-row overflow-hidden max-w-5xl w-full border border-gray-100">
+        
+        {/* الجانب الأخضر (اليمين) */}
+        <div className="md:w-[40%] bg-(--primary-color) p-10 text-white flex flex-col items-center justify-center text-center space-y-6">
+          <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-white/20">
+            <MdOutlineBloodtype className="text-5xl text-white animate-pulse" />
+          </div>
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight">بنك الدم المصري</h1>
+            <p className="text-xl font-light opacity-90">شارك الحياة، تبرع بالدم</p>
+          </div>
+          <p className="text-sm opacity-70 leading-relaxed max-w-[250px]">
+            نظام إدارة متطور يربط بين المتبرعين والمحتاجين بكفاءة وأمان عاليين.
+          </p>
+        </div>
+
+        {/* جانب الفورم (الشمال) */}
+        <div className="md:w-[60%] p-8 md:p-14 md:py-8 bg-white">
+          {/* التبويبات */}
+          <div className="flex border-b border-gray-100 mb-4 relative">
+            <Link href={"register"} className="flex-1 pb-4 text-center text-(--primary-color) font-bold border-b-2 border-(--primary-color) transition-all">
+              إنشاء حساب
+            </Link>
+            <Link href={"login"} className="flex-1 text-center pb-4 text-gray-400 hover:text-gray-600 transition-all">
+              تسجيل الدخول
+            </Link>
+          </div>
+
+          <form onSubmit={onSubmit}  className="space-y-3">
+            {/* الاسم الرباعي */}
+            <Field className="space-y-1">
+              <FieldLabel className="text-xs font-bold text-gray-500 mr-1">الاسم الرباعي</FieldLabel>
+              <div className="relative group">
+                <Input {...register('name' , {required: true})}  placeholder="محمد أحمد محمود علي" className="w-full  p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all placeholder:text-gray-300" />
+                <BiUser className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+              </div>
+              {errors.name && (
+                <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                  * {errors.name.message}
+                </p>
+              )}              
+            </Field>
+
+          
+
+            {/* الهاتف والمحافظة */}
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+               <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">المحافظة</FieldLabel>
+                <div className="relative group">
+                
+                  <Select dir="rtl" >
+                    <SelectTrigger  className="  text-left w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none appearance-none text-gray-400 ">
+                      <SelectValue placeholder="اختر المحافظة..." />
+                    </SelectTrigger>
+
+                    <SelectContent className='text-right' dir="rtl">
+                      <SelectGroup>
+                        {egyptianGovernorates.map((gov) => (
+                        <SelectItem key={gov} value={gov}>
+                          {gov}
+                        </SelectItem>
+                      ))}
+                        
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <BiMap className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">رقم الهاتف</FieldLabel>
+                <div className="relative phone-container">
+                  <PhoneInput
+                  international
+                    placeholder="01x xxxx xxxx"
+                    defaultCountry="EG" // جعل مصر هي الدولة الافتراضية
+                    value={value}
+                    maxLength={15}
+                    onChange={setValue}
+                    className="w-full p-3 py-2 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-(--primary-color)/20 focus-within:border-(--primary-color) outline-none transition-all flex dir-ltr"
+                  />
+                </div>
+              </div>
+            </div> */}
+
+              
+            {/* البريد الإلكتروني */}
+            <div className="space-y-1">
+              <FieldLabel className="text-xs font-bold text-gray-500 mr-1">البريد الإلكتروني</FieldLabel>
+              <div className="relative group">
+                <Input {...register('email' , {required: true})}  type="email" placeholder="name@example.com" className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all placeholder:text-gray-300" />
+                <BiEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+              </div>
+              {errors.email && (
+                <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                  * {errors.email.message}
+                </p>
+              )}  
+            </div>
+            <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">رقم الهاتف</FieldLabel>
+                <div className="relative phone-container">
+                  <Controller
+                    name='phone'
+                    control={control}  
+                    render={({field}) => ( 
+
+                  <PhoneInput {...field}
+                  {...register('phone' , {required: true})} 
+                  international
+                    placeholder="01x xxxx xxxx"
+                    defaultCountry="EG" // جعل مصر هي الدولة الافتراضية
+                    value={value}
+                    maxLength={15}
+                    onChange={setValue}
+                    className="w-full p-3 py-2 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-(--primary-color)/20 focus-within:border-(--primary-color) outline-none transition-all flex dir-ltr"
+                  />
+                     )}/>
+                </div>
+                {errors.phone && (
+                  <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                    * {errors.phone.message}
+                  </p>
+                )}  
+              </div>
+
+            {/* الباسورد */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+               {/* <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">رقم الهاتف</FieldLabel>
+                <div className="relative phone-container">
+                  <Controller
+                    name='phone'
+                    control={control}  
+                    render={({field}) => ( 
+
+                  <PhoneInput {...field}
+                  {...register('phone' , {required: true})} 
+                  international
+                    placeholder="01x xxxx xxxx"
+                    defaultCountry="EG" // جعل مصر هي الدولة الافتراضية
+                    value={value}
+                    maxLength={15}
+                    onChange={setValue}
+                    className="w-full p-3 py-2 bg-gray-50 border border-gray-200 rounded-2xl focus-within:ring-2 focus-within:ring-(--primary-color)/20 focus-within:border-(--primary-color) outline-none transition-all flex dir-ltr"
+                  />
+                     )}/>
+                </div>
+                {errors.phone && (
+                  <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
+                    * {errors.phone.message}
+                  </p>
+                )}  
+              </div> */}
+              <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">كلمة المرور</FieldLabel>
+                <div className="relative group">
+                  <Input {...register('password' , {required: true})}  type="password" placeholder="********" className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all" />
+                  <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+                </div>
+                {errors.password && (
+    <p className="text-red-500 text-xs mt-0 mr-1 animate-in fade-in slide-in-from-top-1">
+      * {errors.password?.message}
+    </p>
+  )}  
+              </div>
+
+              {/* حقل تأكيد كلمة المرور */}
+              <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">تأكيد كلمة المرور</FieldLabel>
+                <div className="relative group">
+                  <Input 
+                    {...register('confirm_password')} 
+                    type="password" 
+                    placeholder="********" 
+                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all placeholder:text-gray-300" 
+                  />
+                  <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+                </div>
+                {errors.confirm_password && (
+                  <p className="text-red-500 text-xs mt-1 mr-1 animate-in fade-in slide-in-from-top-1">
+                    * {errors.confirm_password?.message}
+                  </p>
+                )}
+              </div>
+              {/* <div className="space-y-1">
+                <FieldLabel className="text-xs font-bold text-gray-500 mr-1">تأكيد كلمة المرور</FieldLabel>
+                <div className="relative group">
+                  <Input type="password" placeholder="********" className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all" />
+                  <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
+                </div>
+              </div> */}
+            </div>
+
+            {/* Checkbox */}
+            <div className="flex items-center gap-2 pt-2">
+              <input id="terms-checkbox" type="checkbox" className="w-4 h-4 rounded border-gray-300 text-(--primary-color) focus:ring-(--primary-color)" />
+              <label htmlFor="terms-checkbox"  className="text-xs font-bold text-(--primary-color) cursor-pointer hover:underline">
+                أوافق على الشروط والأحكام و سياسة الخصوصية
+              </label>
+            </div>
+
+            {/* زر الإرسال */}
+            <Button type='submit' disabled={loading} variant="secondary" size="lg" className="w-full bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-6 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ? (<span className="flex items-center gap-2"> <Spinner /> جاري الإنشاء</span>): ("إنشاء الحساب" )}
+              <HiOutlineArrowNarrowLeft className="text-xl group-hover:-translate-x-1 transition-transform" />
+            </Button>
+          </form>
+
+          <p className="text-center text-[10px] text-gray-400 mt-8">
+            © 2026 نظام إدارة بنوك الدم في مصر. جميع الحقوق محفوظة.
+          </p>
+        </div>
+      </div>
+    </div>
+    </>
+  )
+}
