@@ -12,6 +12,7 @@ import { Controller } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 
 import { useResetPasword } from '@/features/auth/hooks/useResetPasword';
+import { Spinner } from '@/components/ui/spinner';
 
 
 export default function ResetPassword() {
@@ -121,7 +122,7 @@ export default function ResetPassword() {
 
             {/* زر تسجيل الدخول */}
             <Button disabled={loading}   variant="secondary" size="lg" className="w-full !text-white bg-[#2D8A56] hover:bg-[#256f45] cursor-pointer  font-bold py-5 text-md+ rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {loading ?  "جاري  التغير" : " تأكيد" }
+              {loading ?  (<span className="flex items-center gap-2"> <Spinner />جاري  التغير</span> ) : ( "تأكيد")}
 
                 
             </Button>

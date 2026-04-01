@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { forgetSchema, TForget } from "../schema/auth.schema";
 import { forgetPasswordApi } from "../services/auth.api";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 export const useForgetPassword = () => {
     const router = useRouter();
@@ -20,8 +21,10 @@ const mutation = useMutation({
         router.push(`/resetPassword?email=${variables.email}`);
         toast.success('تم إرسال الكود');
     },
-    onError: (err: any) => {
-        toast.error(' حدث خطأ ما حاول مره اخري');
+    onError: (error: any) => {
+        if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "حدث خطأ");
+        }
     }
 })
 

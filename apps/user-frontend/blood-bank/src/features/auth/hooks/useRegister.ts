@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { registerSchema, TRegist } from '../schema/auth.schema';
 import { registerApi } from '../services/auth.api';
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 export const useRegister = () => {
   const router = useRouter();
 
@@ -26,9 +27,9 @@ const mutation = useMutation({
       
     },
     onError: (error:any) => {
-      console.log(error);
-      
-      toast.error(error.response.data.message || " هذا الاميل موجود بالفعل");
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "حدث خطأ");
+      }
     }
 })
 

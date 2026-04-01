@@ -3,7 +3,7 @@ import { MdOutlineBloodtype } from 'react-icons/md'
 export default function LoginGreen() {
   return (
     <>
-        <div className="md:w-1/3 bg-[#2D8A56] p-10 text-white flex flex-col items-center justify-center text-center space-y-4">
+        <div className="md:w-1/3 bg-(--primary-color) p-10 text-white flex flex-col items-center justify-center text-center space-y-4">
                   <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
                     <MdOutlineBloodtype className="text-4xl text-white" />
                   </div>

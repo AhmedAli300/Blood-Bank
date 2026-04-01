@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { loginSchema, TLogin } from "../schema/auth.schema";
 import { loginApi } from "../services/auth.api";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 export const useLogin = () => {
     const router = useRouter();
@@ -22,8 +23,10 @@ export const useLogin = () => {
             toast.success('تم تسجيل الدخول بنجاح!');
             router.push('/home');
         },
-        onError: (err :any) => {
-            toast.error('عذراً، حدث خطأ في الاتصال بالسيرفر');
+        onError: (error :any) => {
+            if (axios.isAxiosError(error)) {
+            toast.error(error.response?.data?.message || "حدث خطأ");
+            }
         }
     })
 

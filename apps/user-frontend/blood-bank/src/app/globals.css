@@ -61,6 +61,11 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+ :root {
+--primary-brand: #256f45;
+  --primary-color: #2D8A56; 
+} 
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

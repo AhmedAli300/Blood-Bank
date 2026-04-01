@@ -22,7 +22,7 @@ export default function ResetAccountPassword() {
         <div className="md:w-2/3  p-8 md:p-14 md:py-8 bg-white">
           {/* التبويبات */}
             <div className="flex border-b border-gray-100 mb-10 relative ">
-                <Link href={"login"} className="flex-1 text-center pb-4 text-[#2D8A56] font-bold border-b-2 border-[#2D8A56] transition-all">
+                <Link href={"login"} className="flex-1 text-center pb-4 text-(--primary-color) font-bold border-b-2 border-(--primary-color) transition-all">
                 إعادة تعين كلمة المرور
                 </Link>
                 <Link href={"register"} className="flex-1 text-center pb-4 text-gray-300 hover:text-gray-500 transition-all">
@@ -45,9 +45,9 @@ export default function ResetAccountPassword() {
                     <Input 
                     type="password" 
                     placeholder="********" 
-                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all" 
                     />
-                    <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
+                    <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
                 </div>
                 </Field>
 
@@ -58,21 +58,21 @@ export default function ResetAccountPassword() {
                     <Input 
                     type="password" 
                     placeholder="********" 
-                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                    className="w-full p-2 py-5 pr-11 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all" 
                     />
-                    <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
+                    <BiLockAlt className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
                 </div>
                 </Field>
 
              
 
                 {/* زر تسجيل الدخول */}
-                <Link href={"successCard"} className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+                <Link href={"successCard"} className="w-full bg-(--primary-color) hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
                 تحديث كلمة المرور
                 <HiOutlineLogin className="text-xl rotate-180 group-hover:-translate-x-1 transition-transform" />
                 </Link>
             </form>
-            <Link href={"login"} className='text-center w-full text-[#2D8A56] font-bold flex items-center justify-center mt-2'><IoIosArrowBack className='font-bold'/>العودة لتسجيل الدخول</Link>
+            <Link href={"login"} className='text-center w-full text-(--primary-color) font-bold flex items-center justify-center mt-2'><IoIosArrowBack className='font-bold'/>العودة لتسجيل الدخول</Link>
         </div>
       </div>
     </div>

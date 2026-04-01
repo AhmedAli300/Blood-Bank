@@ -24,7 +24,7 @@ export default function Banks() {
       
       {/* قسم البحث والفلترة */}
       <section className="w-full max-w-[93%]  mx-auto bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1  lg:grid-cols-2 gap-8 items-start">
           
           {/* اختيار الفصيلة */}
           <div className="space-y-4">
@@ -46,7 +46,7 @@ export default function Banks() {
           </div>
 
           {/* اختيار المدينة والمحافظة */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {/* حقل المحافظة */}
             <div className="flex-1 min-w-50">
                 <label className="block text-gray-500 text-[13px] font-bold mb-1.5 pr-1"> المحافظة</label>
@@ -97,12 +97,12 @@ export default function Banks() {
 
       {/* قسم النتائج */}
       <section className="w-full max-w-[93%] mx-auto">
-        <div className="flex justify-between items-center mb-8 px-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 px-2">
             <div className="text-right">
                 <h2 className="text-2xl font-bold text-gray-800">بنوك الدم المتاحة</h2>
                 <p className="text-sm text-gray-400">تم العثور على {bloodBanks.length} نتيجة في منطقتك</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex justify-end gap-2">
                  <Button  variant="secondary" size="lg" className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-gray-600 hover:bg-gray-50 transition-all shadow-sm">
                     <MdOutlineSort size={20} className="text-gray-500" />
                     <span className="text-sm font-medium">الترتيب حسب المسافة</span>
@@ -115,7 +115,7 @@ export default function Banks() {
             </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {bloodBanks.map((bank) => (
             <div key={bank.id} className="bg-white p-6 rounded-4xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
               <div className="flex justify-between items-start mb-6">

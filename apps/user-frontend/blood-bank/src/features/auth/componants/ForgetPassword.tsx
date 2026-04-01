@@ -7,6 +7,7 @@ import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForgetPassword } from '../hooks/useForgetPassword';
+import { Spinner } from '@/components/ui/spinner';
 
 
 export default function ForgetPassword() {
@@ -31,7 +32,7 @@ export default function ForgetPassword() {
         <div className="md:w-2/3  p-8 md:p-14 md:py-8 bg-white">
           {/* التبويبات */}
           <div className="flex border-b border-gray-100 mb-10 relative ">
-            <Link href={"forgetPassword"} className="flex-1 text-center pb-4 text-[#2D8A56] font-bold border-b-2 border-[#2D8A56] transition-all">
+            <Link href={"forgetPassword"} className="flex-1 text-center pb-4 text-(--primary-color) font-bold border-b-2 border-(--primary-color) transition-all">
                نسيت كلمة المرور
             </Link>
             <Link href={"register"} className="flex-1 text-center pb-4 text-gray-300 hover:text-gray-500 transition-all">
@@ -49,10 +50,10 @@ export default function ForgetPassword() {
                 <Input 
                   type="email" 
                   placeholder="example@mail.com" 
-                  className="w-full p-2 py-5 pr-11 mt-1 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-[#2D8A56]/20 focus-visible:border-[#2D8A56] outline-none transition-all" 
+                  className="w-full p-2 py-5 pr-11 mt-1 bg-gray-50 border border-gray-200 rounded-2xl focus-visible:ring-2 focus-visible:ring-(--primary-color)/20 focus-visible:border-(--primary-color) outline-none transition-all" 
                   {...register('email', {required: true})}
                 />
-                <BiEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-[#2D8A56]" />
+                <BiEnvelope className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl group-focus-within:text-(--primary-color)" />
               </div>
               {errors.email && (
                 <p className="text-red-500 font-medium text-xs  mr-1 animate-in fade-in slide-in-from-top-1">
@@ -66,12 +67,12 @@ export default function ForgetPassword() {
          
 
           
-<Button disabled={loading}   variant="secondary" size="lg" className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
-              {loading ?  "جاري  التأكيد" : "تأكيد" }
+<Button disabled={loading}   variant="secondary" size="lg" className="w-full bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+              {loading ?  (<span className="flex items-center gap-2"> <Spinner />جاري  التأكيد </span> ) : ("تأكيد") }
 
                 </Button>
             {/* زر تسجيل الدخول */}
-            {/* <Link href={"resetPassword"} className="w-full bg-[#2D8A56] hover:bg-[#256f45] text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
+            {/* <Link href={"resetPassword"} className="w-full bg-(--primary-color) hover:bg-(--primary-brand) text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-green-900/10 group">
              تأكيد
             </Link> */}
           </form>

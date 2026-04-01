@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { resetPasswordSchema, TResetPassword } from "../schema/auth.schema";
 import { resetPasswordApi } from "../services/auth.api";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 
 export const useResetPasword = () => {
     const router = useRouter();
@@ -25,8 +26,10 @@ export const useResetPasword = () => {
             toast.success('تم تغير كلمة المرور ');
             router.push('/successCard');
         },
-        onError: (err:any) => {
-            toast.error('عذراً، حدث خطأ في  تغير كلمة المرور');
+        onError: (error:any) => {
+            if (axios.isAxiosError(error)) {
+            toast.error(error.response?.data?.message || "حدث خطأ");
+            }
         }
     })
 
