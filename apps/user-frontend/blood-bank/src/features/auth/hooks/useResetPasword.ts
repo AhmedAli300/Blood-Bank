@@ -9,7 +9,7 @@ import { resetPasswordApi } from "../services/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-export const useResetPasword = () => {
+export const useResetPassword = () => {
     const router = useRouter();
     const params = useSearchParams();
     const email = params.get("email");
