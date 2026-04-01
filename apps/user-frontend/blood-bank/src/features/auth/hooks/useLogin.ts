@@ -22,8 +22,8 @@ export const useLogin = () => {
             toast.success('تم تسجيل الدخول بنجاح!');
             router.push('/home');
         },
-        onError: (err :any) => {
-            toast.error('عذراً، حدث خطأ في الاتصال بالسيرفر');
+        onError: (err : any) => {
+            toast.error(err?.response?.data?.message || "بيانات غير صحيحة");;
         }
     })
 

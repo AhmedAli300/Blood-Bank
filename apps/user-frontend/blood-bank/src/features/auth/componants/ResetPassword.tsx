@@ -11,7 +11,7 @@ import { BiLockAlt } from 'react-icons/bi';
 import { Controller } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 
-import { useResetPasword } from '@/features/auth/hooks/useResetPasword';
+import { useResetPassword } from '../hooks/useResetPasword';
 
 
 export default function ResetPassword() {
@@ -22,7 +22,7 @@ export default function ResetPassword() {
       control,
       formState: { errors }, 
       onSubmit, 
-    } = useResetPasword();
+    } = useResetPassword();
       
 
   return (
